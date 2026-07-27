@@ -1,236 +1,304 @@
-# Day3_DataScience_Bootcamp
+# 🚗 Day 3 – Data Science Bootcamp: Used Cars Data Cleaning & Exploratory Data Analysis
 
-# 🚗 Used Car Price Prediction – Exploratory Data Analysis
+## 📌 Overview
 
-## 📌 Project Overview
+This project is part of the **Data Science Bootcamp – Day 3** assignment. The objective is to clean a real-world used cars dataset, perform exploratory data analysis (EDA), engineer useful features, and prepare the dataset for future machine learning tasks.
 
-This project is completed as part of **Epochs '26 – Assignment 3**. The objective is to perform **Exploratory Data Analysis (EDA), Data Cleaning, and Feature Engineering** on the **Used Car Price Prediction Dataset**. These preprocessing steps are essential before developing any machine learning model for predicting used car prices.
-
----
-
-## 📂 Dataset
-
-**Dataset:** Used Car Price Prediction Dataset
-
-The dataset contains information about used cars, including their specifications, condition, and selling prices.
-
-### Features
-
-* Brand
-* Model
-* Model Year
-* Mileage
-* Fuel Type
-* Engine
-* Transmission
-* Exterior Color
-* Interior Color
-* Accident History
-* Clean Title Status
-* Price (Target Variable)
+The notebook demonstrates a complete data preprocessing workflow, including handling missing values, removing duplicates, feature engineering, visualization, and exporting the cleaned dataset.
 
 ---
 
-# 🎯 Objectives
+## 📂 Repository Structure
 
-* Explore the dataset and understand its structure.
-* Identify numerical and categorical features.
-* Perform descriptive statistical analysis.
-* Detect missing values and duplicate records.
-* Analyze feature distributions.
-* Detect and handle outliers.
-* Clean the dataset for future machine learning.
-* Engineer meaningful features to improve model performance.
-
----
-
-# 🔍 Exploratory Data Analysis (EDA)
-
-The following analyses were performed:
-
-* Dataset shape and structure
-* Data type inspection
-* Missing value analysis
-* Duplicate record detection
-* Statistical summary of numerical features
-* Distribution analysis
-* Categorical feature analysis
-* Outlier detection
-* Correlation analysis
+```
+Day3_DataScience_Bootcamp/
+│
+├── task_3.ipynb              # Main Jupyter Notebook
+├── used_cars.csv             # Original dataset
+├── cleaned_used_cars.csv     # Cleaned dataset
+├── README.md                 # Project documentation
+```
 
 ---
 
-# ⚠️ Data Quality Issues Identified
+## 🎯 Objectives
 
-The dataset contained several quality issues:
-
-* Missing values in categorical columns such as:
-
-  * `clean_title`
-  * `fuel_type`
-  * `accident`
-* `price` stored as formatted text and converted to numeric values.
-* `milage` stored as text and converted to numeric values.
-* Inconsistent formatting in some categorical columns.
-* No duplicate records were identified.
+- Load and inspect the dataset
+- Handle missing values
+- Remove duplicate records
+- Perform exploratory data analysis (EDA)
+- Engineer meaningful features
+- Visualize important trends
+- Export the cleaned dataset
 
 ---
 
-# 🧹 Data Cleaning Techniques Applied
+## 📊 Dataset Information
+
+The dataset contains information about used cars, including:
+
+- Brand
+- Model
+- Model Year
+- Price
+- Mileage
+- Fuel Type
+- Transmission
+- Engine
+- Accident History
+- Clean Title Status
+- Other vehicle specifications
+
+---
+
+## 🛠️ Data Preprocessing
 
 The following preprocessing steps were performed:
 
-* Removed unnecessary symbols from price values.
-* Converted mileage into numeric format.
-* Converted appropriate columns into correct data types.
-* Filled missing categorical values using appropriate techniques.
-* Checked and removed duplicate records (if any).
-* Identified outliers using statistical methods.
-* Prepared the dataset for machine learning.
+### ✅ Missing Value Treatment
+
+- Filled missing categorical values using the mode or appropriate labels.
+- Missing values in accident history were replaced with **"Unknown"** where necessary.
+
+### ✅ Duplicate Removal
+
+- Checked for duplicate records.
+- Removed duplicate entries to improve data quality.
+
+### ✅ Data Type Verification
+
+- Verified column data types.
+- Ensured numerical columns were correctly interpreted.
 
 ---
 
-# ⚙️ Feature Engineering
+## ⚙️ Feature Engineering
 
-The following engineered features were created:
+Several new features were created to improve the usefulness of the dataset.
 
-1. **Vehicle Age**
+### Vehicle Age
 
-   * Current Year − Model Year
+Calculated using:
 
-2. **Mileage per Year**
-
-   * Mileage divided by Vehicle Age
-
-3. **Luxury Brand Indicator**
-
-   * Binary feature identifying premium brands
-
-4. **Accident History Indicator**
-
-   * Encoded accident status into numerical values
-
-5. **Clean Title Indicator**
-
-   * Binary feature indicating clean ownership history
-
-These engineered features can improve predictive performance in future machine learning models.
-
----
-
-# 📊 Key Insights
-
-1. The dataset contains over **4,000 used car records**, providing a diverse set of vehicles for analysis.
-
-2. Missing values are mainly concentrated in the `clean_title`, `fuel_type`, and `accident` columns.
-
-3. Price and mileage required preprocessing because they were stored as text rather than numeric values.
-
-4. No duplicate records were found, indicating good data consistency.
-
-5. Vehicle age and mileage are expected to be among the strongest factors influencing used car prices.
-
----
-
-# 📁 Repository Structure
-
-```text
-used-car-price-prediction-eda/
-│
-├── task-3.ipynb
-├── cleaned_used_cars.csv
-├── README.md
-├── requirements.txt
-└── images/
-    ├── price_distribution.png
-    ├── mileage_distribution.png
-    ├── brand_distribution.png
-    ├── correlation_heatmap.png
-    └── boxplots.png
+```
+Vehicle Age = Current Year − Model Year
 ```
 
+### Mileage Per Year
+
+```
+Mileage Per Year = Mileage / Vehicle Age
+```
+
+### Luxury Car Indicator
+
+Created a binary feature identifying luxury brands such as:
+
+- BMW
+- Mercedes-Benz
+- Audi
+- Lexus
+- Jaguar
+- Porsche
+
+### Accident Indicator
+
+Converted accident history into a binary feature:
+
+- 1 = Accident Reported
+- 0 = No Accident
+
+### Clean Title Indicator
+
+Converted clean title information into:
+
+- 1 = Clean Title
+- 0 = Not Clean Title
+
 ---
 
-# 🛠️ Technologies Used
+## 📈 Exploratory Data Analysis (EDA)
 
-* Python
-* Pandas
-* NumPy
-* Matplotlib
-* Seaborn
-* Scikit-learn
-* Jupyter Notebook
+The notebook includes multiple visualizations to understand the dataset.
+
+### Distribution of Car Prices
+
+- Histogram
+- Density distribution
+
+### Vehicle Mileage Distribution
+
+- Histogram
+- Distribution curve
+
+### Vehicle Age Distribution
+
+Shows how old the listed vehicles are.
+
+### Top Car Brands
+
+Bar chart displaying the most common manufacturers.
+
+### Fuel Type Distribution
+
+Visual comparison of different fuel categories.
+
+### Transmission Distribution
+
+Shows the frequency of Automatic and Manual vehicles.
+
+### Price vs Vehicle Age
+
+Scatter plot showing how age affects selling price.
+
+### Mileage vs Price
+
+Scatter plot illustrating the relationship between mileage and price.
+
+### Boxplots
+
+Used to identify potential outliers in:
+
+- Price
+- Mileage
 
 ---
 
-# 🚀 How to Run
+## 🔍 Key Insights
 
-1. Clone the repository.
+- The dataset contains vehicles from multiple manufacturers across different model years.
+- Vehicle prices vary significantly depending on brand and age.
+- Most vehicles have moderate mileage.
+- Luxury brands generally command higher prices.
+- Older vehicles typically have lower market value.
+- Mileage and vehicle age show a noticeable relationship with selling price.
+- Feature engineering makes the dataset more suitable for predictive modelling.
+
+---
+
+## 📁 Output
+
+The cleaned dataset is exported as:
+
+```
+cleaned_used_cars.csv
+```
+
+This dataset is ready for further analysis or machine learning applications.
+
+---
+
+## 💻 Technologies Used
+
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Jupyter Notebook
+
+---
+
+## 📚 Python Libraries
+
+```python
+pandas
+numpy
+matplotlib
+seaborn
+```
+
+Install using:
 
 ```bash
-git clone https://github.com/your-username/used-car-price-prediction-eda.git
+pip install pandas numpy matplotlib seaborn
 ```
 
-2. Navigate to the project directory.
+---
+
+## 🚀 How to Run
+
+1. Clone the repository
 
 ```bash
-cd used-car-price-prediction-eda
+git clone https://github.com/asif-hussain-7512/Day3_DataScience_Bootcamp.git
 ```
 
-3. Install dependencies.
+2. Navigate to the project folder
 
 ```bash
-pip install -r requirements.txt
+cd Day3_DataScience_Bootcamp
 ```
 
-4. Open Jupyter Notebook.
+3. Install dependencies
+
+```bash
+pip install pandas numpy matplotlib seaborn
+```
+
+4. Launch Jupyter Notebook
 
 ```bash
 jupyter notebook
 ```
 
-5. Run `task-3.ipynb` to reproduce the analysis.
+5. Open
+
+```
+task_3.ipynb
+```
+
+and execute all cells.
 
 ---
 
-# 📈 Future Work
+## 📸 Sample Visualizations
 
-* Train regression models for price prediction.
-* Compare multiple machine learning algorithms.
-* Perform feature selection.
-* Hyperparameter tuning.
-* Evaluate model performance using RMSE, MAE, and R² score.
+The notebook contains visualizations including:
 
----
-
-# 📌 Submission Details
-
-**Assignment:** Epochs '26 – Assignment 3
-
-Deliverables included:
-
-* ✅ Exploratory Data Analysis
-* ✅ Data Cleaning
-* ✅ Feature Engineering
-* ✅ Cleaned Dataset
-* ✅ GitHub Repository
+- Price Distribution
+- Mileage Distribution
+- Vehicle Age Distribution
+- Top Brands
+- Fuel Type Distribution
+- Transmission Distribution
+- Scatter Plots
+- Boxplots
 
 ---
 
-# 👨‍💻 Author
+## 🎓 Learning Outcomes
 
-**ASIF HUSSAIN**
+Through this project, I learned how to:
 
-Completed as part of the **Epochs '26 Data Science Track**.
+- Clean real-world datasets
+- Handle missing values effectively
+- Perform exploratory data analysis
+- Engineer useful features
+- Visualize relationships between variables
+- Prepare datasets for machine learning workflows
 
-## Key Insights
-1. The dataset contains a diverse range of used cars from multiple brands, with popular manufacturers contributing the majority of listings, indicating a varied and competitive used car market.
-2. Most vehicles are relatively recent models, with a higher concentration of cars manufactured after 2015, suggesting that newer vehicles dominate the dataset.
-3. Mileage has a noticeable impact on price. Cars with higher mileage generally have lower selling prices, indicating a negative relationship between mileage and vehicle value.
-4. Luxury brands tend to command higher prices than economy brands, even for used vehicles, highlighting the influence of brand reputation on resale value.
-5. Vehicles with a clean accident history and clean title generally have higher prices than those with reported accidents or title issues, showing that vehicle condition significantly affects resale value.
+---
 
-## Files
-- task-3.ipynb
-- cleaned_used_cars.csv
-- README.md
+## 👨‍💻 Author
+
+**Asif Hussain**
+
+📧 Email: asifhussain@mulearn
+
+GitHub:
+https://github.com/asif-hussain-7512
+
+---
+
+## ⭐ Acknowledgement
+
+This project was completed as part of the **Epochs '26 Data Science Bootcamp – Day 3 Assignment** under **μLearn**.
+
+Special thanks to the mentors and organizers for providing the dataset and learning resources.
+
+---
+
+## 📜 License
+
+This project is intended for educational purposes only.
